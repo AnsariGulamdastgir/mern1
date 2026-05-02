@@ -1,0 +1,78 @@
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
+
+const carSchema = new Schema({
+
+    brand:{ 
+        type:String 
+    },
+
+    model:{
+         type:String 
+        },
+
+    year:{ 
+        type:Number 
+    },
+
+    price:{
+         type:Number 
+        },
+
+    mileage:{
+         type:Number
+         },
+
+    fuelType:{
+         type:String
+         },
+
+    description:{
+         type:String 
+        },
+
+    location:{
+        type:String
+    },
+
+    condition:{
+        type:String,
+        enum:["Excellent","Good","Fair"],
+        default:"Excellent"
+    },
+
+    sellerId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"users"
+    },
+    
+    buyerId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"users",
+        default: null
+    },
+
+    soldAt:{
+        type:Date
+    },
+    
+    images:[
+        {
+            type:String
+        }
+    ],  
+          
+    status:{
+        type:String,
+        enum:["available","sold"],
+        default:"available"
+    },
+     createdAt:{
+        type:Date,
+        default:Date.now
+    }
+
+
+})
+
+module.exports = mongoose.model("cars",carSchema)
