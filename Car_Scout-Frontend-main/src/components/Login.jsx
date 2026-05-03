@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import API from "../api/Api";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -15,7 +15,7 @@ const Login = () => {
 
   const submitHandler = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3800/user/login", data);
+      const res = await API.post("/user/login", data);
 
       console.log("Full Response:", res);
 

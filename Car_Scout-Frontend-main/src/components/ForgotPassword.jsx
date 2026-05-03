@@ -1,4 +1,4 @@
-import axios from "axios";
+import API from "../api/Api";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
@@ -16,8 +16,8 @@ export const Forgotpassword = () => {
   const submitHandler = async (data) => {
     try {
       console.log("Submitted Email:", data);
-      const res = await axios.post(
-        "http://localhost:3800/user/forgotpassword",
+      const res = await API.post(
+        "/user/forgotpassword",
         data
       );
       console.log(res.data);

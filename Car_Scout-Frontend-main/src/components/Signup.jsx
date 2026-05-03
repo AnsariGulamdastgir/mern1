@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import API from "../api/Api";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -22,7 +22,7 @@ const Signup = () => {
 
   const submitHandler = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3800/user/register", data);
+      const res = await API.post("/user/register", data);
 
       if (res.data.success) {
         toast.success(res.data.message || "OTP sent to your email");
@@ -45,7 +45,7 @@ const Signup = () => {
 
     setIsVerifying(true);
     try {
-      const res = await axios.post("http://localhost:3800/user/verify-otp", {
+      const res = await API.post("/user/verify-otp", {
         email: submittedEmail,
         otp: otpValue,
       });

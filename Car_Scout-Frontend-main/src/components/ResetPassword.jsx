@@ -1,4 +1,4 @@
-import axios from "axios";
+import API from "../api/Api";
 import React, { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -11,8 +11,8 @@ export const ResetPassword = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(
-        `http://localhost:3800/user/resetpassword/${token}`,
+      const res = await API.put(
+        `/user/resetpassword/${token}`,
         { newPassword }
       );
       console.log(res.data);
