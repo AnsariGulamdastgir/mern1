@@ -244,7 +244,7 @@ const forgotPassword = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    const url = `http://localhost:5173/resetpassword/${token}`;
+    const url = `${process.env.FRONTEND_URL || "http://localhost:5173"}/resetpassword/${token}`;
 
     const mailHtml = `
       <div style="font-family:Arial, sans-serif; padding:20px;">
@@ -338,7 +338,7 @@ const updateProfilePic = async (req, res) => {
 
     let finalPath = req.file.path;
     if (!finalPath.startsWith("http")) {
-      finalPath = `http://localhost:${process.env.PORT || 3800}/uploads/${req.file.filename}`;
+      finalPath = `${process.env.BACKEND_URL || "http://localhost:3800"}/uploads/${req.file.filename}`;
     }
 
     const updatedUser = await User.findByIdAndUpdate(

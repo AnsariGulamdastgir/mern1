@@ -40,7 +40,7 @@ const createCar = async (req, res) => {
           return file.path;
         }
         // Build a URL that the frontend can use to load the image
-        return `http://localhost:${process.env.PORT || 3800}/uploads/${file.filename}`;
+        return `${process.env.BACKEND_URL || "http://localhost:3800"}/uploads/${file.filename}`;
       });
     }
 
@@ -123,7 +123,7 @@ const updateCar = async (req, res) => {
         if (file.path && file.path.startsWith("http")) {
           return file.path;
         }
-        return `http://localhost:${process.env.PORT || 3800}/uploads/${file.filename}`;
+        return `${process.env.BACKEND_URL || "http://localhost:3800"}/uploads/${file.filename}`;
       });
       updatedImages = [...updatedImages, ...newImageUrls];
     }

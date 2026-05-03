@@ -60,7 +60,7 @@ const getWelcomeEmailTemplate = ({ firstName, lastName, role }) => {
                   </table>
 
                   <div style="margin-top:30px; text-align:center;">
-                    <a href="http://localhost:5173/" style="display:inline-block; background:#22d3ee; color:#0f172a; text-decoration:none; font-size:14px; font-weight:800; padding:15px 30px; border-radius:14px; box-shadow:0 10px 24px rgba(34,211,238,0.25);">
+                    <a href="${process.env.FRONTEND_URL || "http://localhost:5173"}" style="display:inline-block; background:#22d3ee; color:#0f172a; text-decoration:none; font-size:14px; font-weight:800; padding:15px 30px; border-radius:14px; box-shadow:0 10px 24px rgba(34,211,238,0.25);">
                       Start Exploring
                     </a>
                   </div>
