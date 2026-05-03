@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       { path: "notifications", element: <Notifications /> },
       { path: "testdrives", element: <MyTestDrives /> },
 
-      { path: "profile", element : <Profile/>}
+      { path: "profile", element: <Profile /> }
     ]
   },
 
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
 
       { path: "users", element: <ManageUsers /> },
       { path: "adduser", element: <AddUser /> },
-      { path: "profile", element : <Profile/>}
+      { path: "profile", element: <Profile /> }
     ]
   },
 
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
       { path: "notifications", element: <Notifications /> },
       { path: "testdrives", element: <SellerTestDrives /> },
 
-      { path: "profile", element : <Profile/>}
+      { path: "profile", element: <Profile /> }
     ]
   }
 ]);
