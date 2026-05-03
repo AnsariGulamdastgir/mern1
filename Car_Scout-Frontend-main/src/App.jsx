@@ -8,13 +8,9 @@ import axios from 'axios'
 
 
 function App() {
-  const [count, setCount] = useState(0)
-  //axios.defaults.baseURL = "https://backend-carscout1.onrender.com"
-
   return (
     <>
-     
-      <AppRouter></AppRouter>
+      <AppRouter />
       <ToastContainer
         position="top-center"
         autoClose={5000}

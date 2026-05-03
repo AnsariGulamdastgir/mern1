@@ -35,7 +35,11 @@ import AddCarWizard from "../pages/seller/AddCarWizard";
 import Profile from "../pages/user/Profile";
 
 const router = createBrowserRouter([
-  { path: "/", element: <LandingPage /> },
+  { 
+    path: "/", 
+    index: true,
+    element: <LandingPage /> 
+  },
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
   { path: "/forgotpassword", element: <Forgotpassword /> },
