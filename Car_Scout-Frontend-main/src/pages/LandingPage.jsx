@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaSearch, FaHandshake, FaCarSide, FaShieldAlt, FaArrowRight, FaStar } from "react-icons/fa";
+import { FaSearch, FaHandshake, FaCarSide, FaShieldAlt, FaArrowRight, FaRobot, FaCalendarCheck, FaCommentDots, FaTwitter, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -24,9 +24,10 @@ const LandingPage = () => {
             CarScout
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+            <a href="#" className="hover:text-cyan-400 transition-colors">Home</a>
             <a href="#features" className="hover:text-cyan-400 transition-colors">Features</a>
             <a href="#how-it-works" className="hover:text-cyan-400 transition-colors">How it Works</a>
-            <a href="#testimonials" className="hover:text-cyan-400 transition-colors">Reviews</a>
+            <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
           </div>
           <div className="flex items-center gap-4">
             <button 
@@ -61,12 +62,12 @@ const LandingPage = () => {
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
               Find, Negotiate, & <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-400 bg-300% animate-gradient">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-400 bg-300-percent animate-gradient">
                 Drive Your Dream.
               </span>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 mb-8 leading-relaxed max-w-xl">
-              Experience the premium marketplace for buying and selling cars. Verified listings, direct negotiations, and secure test drives all in one sleek platform.
+              A comprehensive Car Scout platform featuring role-based dashboards, real-time negotiation, test-drive scheduling, and integrated AI chatbot support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
@@ -83,22 +84,18 @@ const LandingPage = () => {
               </button>
             </div>
             
-            <div className="mt-12 flex items-center gap-6 text-gray-400 text-sm">
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-white">50k+</span>
-                <span>Active Users</span>
+            <div className="mt-12 flex flex-wrap items-center gap-4 text-sm font-medium">
+              <div className="flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-cyan-300">
+                <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                Role-Based Portals
               </div>
-              <div className="w-px h-10 bg-gray-700"></div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-white">10k+</span>
-                <span>Verified Cars</span>
+              <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 text-emerald-300">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Offers & Negotiation
               </div>
-              <div className="w-px h-10 bg-gray-700"></div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-white">4.9/5</span>
-                <span className="flex text-yellow-400 text-xs mt-1">
-                  <FaStar/><FaStar/><FaStar/><FaStar/><FaStar/>
-                </span>
+              <div className="flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-2 text-purple-300">
+                <span className="h-2 w-2 rounded-full bg-purple-400 animate-pulse"></span>
+                AI Chatbot Integrated
               </div>
             </div>
           </div>
@@ -114,19 +111,22 @@ const LandingPage = () => {
              />
              
              {/* Floating UI Elements */}
-             <div className="absolute -left-8 top-1/4 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl animate-bounce-slow">
-               <div className="text-xs text-gray-400">Current Offer</div>
-               <div className="text-xl font-bold text-emerald-400">$45,000</div>
-             </div>
-             <div className="absolute -right-4 bottom-1/4 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl animate-bounce-slow" style={{ animationDelay: '1s' }}>
-               <div className="flex items-center gap-2">
-                 <FaShieldAlt className="text-cyan-400" />
-                 <span className="text-sm font-bold">Verified Seller</span>
-               </div>
-             </div>
           </div>
         </div>
       </section>
+
+      {/* Trusted By Section */}
+      <div className="border-y border-white/5 bg-[#0a101a] py-8 relative z-10">
+        <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-cyan-400">Trusted Network</span>
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+            <span className="text-xl font-bold font-serif text-white">AutoTrust</span>
+            <span className="text-xl font-bold italic text-white">DriveSafe</span>
+            <span className="text-xl font-bold tracking-tighter text-white">VelocityMotors</span>
+            <span className="text-xl font-bold text-white">EliteCars</span>
+          </div>
+        </div>
+      </div>
 
       {/* Features Section */}
       <section id="features" className="py-24 relative">
@@ -138,9 +138,9 @@ const LandingPage = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: <FaSearch />, title: "Smart Discovery", desc: "Advanced filtering and matching algorithms to find the exact car you're looking for, instantly." },
-              { icon: <FaHandshake />, title: "Direct Negotiation", desc: "No middlemen. Make offers, receive counter-offers, and agree on a price directly with sellers." },
-              { icon: <FaShieldAlt />, title: "Secure Transactions", desc: "Every user is verified and every listing is checked. Your safety and trust are our top priorities." }
+              { icon: <FaHandshake />, title: "Offer & Counter-Offer", desc: "A complete negotiation engine. Buyers make offers, sellers can counter-offer, and both can settle on a final price." },
+              { icon: <FaCalendarCheck />, title: "Test Drive Scheduling", desc: "Easily request a test drive by selecting a date, time, and location. Sellers can accept or reject directly from their dashboard." },
+              { icon: <FaRobot />, title: "AI Assistant & Live Chat", desc: "Resolve queries instantly via the AI Chatbot, and use real-time messaging to communicate directly with car owners." }
             ].map((feature, idx) => (
               <div key={idx} className="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 hover:-translate-y-2 transition-all duration-300 group">
                 <div className="w-14 h-14 bg-cyan-500/20 rounded-2xl flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
@@ -161,10 +161,10 @@ const LandingPage = () => {
           
           <div className="grid md:grid-cols-4 gap-8">
             {[
-              { step: "01", title: "Create Account", desc: "Sign up securely as a buyer or seller." },
-              { step: "02", title: "Find or List", desc: "Browse thousands of cars or list your own in minutes." },
-              { step: "03", title: "Negotiate", desc: "Use our built-in offer system to reach an agreement." },
-              { step: "04", title: "Test Drive", desc: "Schedule a meetup and finalize the deal in person." }
+              { step: "01", title: "Select Role", desc: "Sign up as a Buyer to explore cars, or as a Seller to list inventory." },
+              { step: "02", title: "Smart Discovery", desc: "Browse listings, filter options, or use the AI Chatbot for guidance." },
+              { step: "03", title: "Negotiate & Chat", desc: "Place an offer or chat directly with the seller to discuss details." },
+              { step: "04", title: "Test Drive", desc: "Schedule a meetup and verify the car in person before concluding." }
             ].map((item, idx) => (
               <div key={idx} className="relative">
                 <div className="text-6xl font-black text-white/5 mb-4">{item.step}</div>
@@ -195,31 +195,74 @@ const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-white/10 text-center text-gray-500 text-sm">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2 text-white font-bold text-lg">
-              <FaCarSide className="text-cyan-400" />
-              CarScout
+      <footer id="contact" className="pt-20 pb-10 border-t border-white/10 bg-[#040810] text-sm">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div className="md:col-span-1">
+              <div className="flex items-center gap-2 text-white font-bold text-2xl mb-6">
+                <FaCarSide className="text-cyan-400" />
+                CarScout
+              </div>
+              <p className="text-gray-400 leading-relaxed mb-6">
+                The most secure and transparent platform to find, negotiate, and drive your dream car.
+              </p>
+              <div className="flex gap-4 text-gray-400">
+                <a href="#" className="hover:text-cyan-400 transition-colors text-lg"><FaTwitter /></a>
+                <a href="#" className="hover:text-cyan-400 transition-colors text-lg"><FaInstagram /></a>
+                <a href="#" className="hover:text-cyan-400 transition-colors text-lg"><FaLinkedin /></a>
+                <a href="#" className="hover:text-cyan-400 transition-colors text-lg"><FaGithub /></a>
+              </div>
             </div>
-            <p>&copy; 2026 CarScout. All rights reserved.</p>
-            <div className="flex gap-4">
-              <a href="#" className="hover:text-cyan-400">Privacy Policy</a>
-              <a href="#" className="hover:text-cyan-400">Terms of Service</a>
+            
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs">Platform</h4>
+              <ul className="space-y-4 text-gray-400">
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">Browse Cars</a></li>
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">Seller Portal</a></li>
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">Test Drives</a></li>
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">Pricing & Fees</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs">Company</h4>
+              <ul className="space-y-4 text-gray-400">
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">Press & Media</a></li>
+                <li><a href="#" className="hover:text-cyan-400 transition-colors">Contact Support</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs">Stay Updated</h4>
+              <p className="text-gray-400 mb-4">Subscribe to our newsletter for the latest car deals and updates.</p>
+              <div className="flex">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="bg-[#0f172a] border border-white/10 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:border-cyan-500 w-full"
+                />
+                <button className="bg-cyan-500 text-[#060b13] px-4 py-2 font-bold rounded-r-lg hover:bg-cyan-400 transition-colors">
+                  Join
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-gray-500">
+            <p>&copy; {new Date().getFullYear()} CarScout Marketplace. All rights reserved.</p>
+            <div className="flex gap-6 mt-4 md:mt-0">
+              <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-cyan-400 transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-cyan-400 transition-colors">Cookie Settings</a>
             </div>
           </div>
         </div>
       </footer>
 
       <style>{`
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-15px); }
-        }
-        .animate-bounce-slow {
-          animation: bounce-slow 4s ease-in-out infinite;
-        }
-        .bg-300\\% {
+        .bg-300-percent {
           background-size: 300% auto;
         }
         @keyframes gradient {
