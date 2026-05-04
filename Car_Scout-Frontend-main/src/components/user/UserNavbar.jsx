@@ -9,6 +9,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import API from "../../api/Api";
 import Chatbot from "../Chatbot";
+import socket from "../../utils/socket";
 
 export const UserNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);

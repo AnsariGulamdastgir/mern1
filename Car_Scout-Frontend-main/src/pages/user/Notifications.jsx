@@ -104,11 +104,10 @@ const Notifications = () => {
             {notifications.map((item) => (
               <div
                 key={item._id}
-                className={`rounded-3xl border p-5 shadow-[0_10px_30px_rgba(0,0,0,0.20)] transition ${
-                  item.isRead
+                className={`rounded-3xl border p-5 shadow-[0_10px_30px_rgba(0,0,0,0.20)] transition ${item.isRead
                     ? "border-white/10 bg-[#111827]"
                     : "border-cyan-400/20 bg-cyan-400/5"
-                }`}
+                  }`}
               >
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div>

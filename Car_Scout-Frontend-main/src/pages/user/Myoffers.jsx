@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api/Api";
 import { toast } from "react-toastify";
+import socket from "../../utils/socket";
 
 const MyOffers = () => {
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   const [selectedOffer, setSelectedOffer] = useState(null);
 
   const getOffers = async () => {
@@ -26,8 +27,16 @@ const MyOffers = () => {
   useEffect(() => {
     getOffers();
 
-    const interval = setInterval(getOffers, 5000);
-    return () => clearInterval(interval);
+    // Listen for offer updates via socket
+    socket.connect();
+    socket.on("offer:update", () => {
+      console.log("[Socket] Offer updated, fetching fresh data...");
+      getOffers();
+    });
+
+    return () => {
+      socket.off("offer:update");
+    };
   }, []);
 
   const handleBuyerDecision = async (id, status) => {
@@ -84,8 +93,8 @@ const MyOffers = () => {
                 offer.status === "pending"
                   ? "bg-amber-400/10 text-amber-300 border-amber-400/20"
                   : offer.status === "accepted"
-                  ? "bg-emerald-400/10 text-emerald-300 border-emerald-400/20"
-                  : "bg-red-400/10 text-red-300 border-red-400/20";
+                    ? "bg-emerald-400/10 text-emerald-300 border-emerald-400/20"
+                    : "bg-red-400/10 text-red-300 border-red-400/20";
 
               return (
                 <div
