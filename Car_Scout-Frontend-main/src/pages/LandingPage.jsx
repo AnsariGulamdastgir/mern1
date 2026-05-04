@@ -16,10 +16,7 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-[#060b13] text-white font-sans overflow-x-hidden">
-      {/* DEBUG MARKER */}
-      <div className="bg-red-600 text-white text-center py-1 font-bold text-xs fixed top-0 w-full z-[9999]">
-        LANDING PAGE ACTIVE - CARSCOUT
-      </div>
+
       {/* Navbar */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#060b13]/90 backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">

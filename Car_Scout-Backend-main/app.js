@@ -5,6 +5,10 @@ require("dotenv").config() //load env file... using process
 
 app.use(express.json())
 app.use(cors()) //allow all requests
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
 app.use("/uploads", express.static("uploads"));
 
 const DBConnection = require("./src/utils/DBConnection")
