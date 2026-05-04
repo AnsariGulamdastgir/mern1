@@ -11,6 +11,11 @@ app.use((req, res, next) => {
 });
 app.use("/uploads", express.static("uploads"));
 
+// Health-check / root route
+app.get("/", (req, res) => {
+    res.status(200).json({ status: "ok", message: "CarScout API is running" });
+});
+
 const DBConnection = require("./src/utils/DBConnection")
 DBConnection()
 
