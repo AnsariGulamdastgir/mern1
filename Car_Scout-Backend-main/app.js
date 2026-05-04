@@ -1,4 +1,5 @@
 const express = require("express")
+const http = require("http")
 const app = express()
 const cors = require("cors")
 require("dotenv").config() //load env file... using process
@@ -38,7 +39,6 @@ const testDriveRoutes = require("./src/routes/TestDriveRoutes")
 app.use("/testdrive",testDriveRoutes)
 
 const adminRoutes = require("./src/routes/AdminRoutes");
-
 app.use("/admin", adminRoutes);
 
 const authRoutes = require("./src/routes/AuthRoutes")
@@ -47,10 +47,12 @@ app.use("/auth",authRoutes)
 const chatRoutes = require("./src/routes/ChatRoutes")
 app.use("/chat", chatRoutes)
 
-
+// Create HTTP server and attach Socket.io
+const server = http.createServer(app)
+const { initSocket } = require("./src/utils/socket")
+initSocket(server)
 
 const PORT = process.env.PORT
-app.listen(PORT,()=>{
+server.listen(PORT, () => {
     console.log(`server started on port ${PORT}`)
 })
-

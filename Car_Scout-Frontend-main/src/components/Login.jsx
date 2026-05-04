@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import API from "../api/Api";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -14,6 +15,7 @@ const Login = () => {
   } = useForm();
 
   const submitHandler = async (data) => {
+    setIsLoading(true);
     try {
       const res = await API.post("/user/login", data);
 
@@ -55,6 +57,8 @@ const Login = () => {
       const message = err.response?.data?.message || err.message || "Login Failed ❌";
 
       toast.error(message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -183,9 +187,12 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="mt-2 w-full rounded-2xl bg-cyan-500 py-3.5 text-base font-semibold text-slate-950 transition hover:bg-cyan-400"
+                disabled={isLoading}
+                className={`mt-2 w-full rounded-2xl py-3.5 text-base font-semibold text-slate-950 transition ${
+                  isLoading ? "bg-cyan-700 cursor-not-allowed" : "bg-cyan-500 hover:bg-cyan-400"
+                }`}
               >
-                Login
+                {isLoading ? "Logging in..." : "Login"}
               </button>
             </form>
 

@@ -19,7 +19,15 @@ export const UserNavbar = () => {
   const location = useLocation();
   const profileRef = useRef(null);
 
-  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const user = useMemo(() => {
+    try {
+      const storedUser = localStorage.getItem("user");
+      return storedUser ? JSON.parse(storedUser) : {};
+    } catch (e) {
+      return {};
+    }
+  }, []);
+
   const userName = localStorage.getItem("firstName") || user?.firstName || "User";
   const role = localStorage.getItem("role");
 
@@ -43,22 +51,26 @@ export const UserNavbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const userId = user?._id;
+
   useEffect(() => {
-    const fetchUnreadCount = async () => {
-      try {
-        if (!user?._id) return;
-        const res = await API.get(`/notification/unread-count?userId=${user._id}`);
-        setUnreadCount(res.data.count || 0);
-      } catch (err) {
-        console.log("Notification count error:", err);
-      }
+    if (!userId) return;
+
+    // 1. Connect to Socket and listen for updates
+    // The initial count is now sent by the backend automatically upon registration
+    socket.connect();
+    socket.emit("register", userId);
+
+    socket.on("notification:count", (data) => {
+      console.log("[Socket] Received unread count update:", data.count);
+      setUnreadCount(data.count);
+    });
+
+    return () => {
+      socket.off("notification:count");
+      socket.disconnect();
     };
-
-    fetchUnreadCount();
-    const interval = setInterval(fetchUnreadCount, 5000);
-
-    return () => clearInterval(interval);
-  }, [user?._id]);
+  }, [userId]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -76,10 +88,9 @@ export const UserNavbar = () => {
   };
 
   const navClass = (path) =>
-    `rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
-      isActive(path)
-        ? "bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-500/20"
-        : "text-slate-300 hover:bg-white/5 hover:text-white"
+    `rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${isActive(path)
+      ? "bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-500/20"
+      : "text-slate-300 hover:bg-white/5 hover:text-white"
     }`;
 
   return (
@@ -281,9 +292,8 @@ export const UserNavbar = () => {
         </div>
 
         <div
-          className={`overflow-hidden border-t border-white/10 bg-[#0f172a]/95 backdrop-blur-xl transition-all duration-300 md:hidden ${
-            isOpen ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0"
-          }`}
+          className={`overflow-hidden border-t border-white/10 bg-[#0f172a]/95 backdrop-blur-xl transition-all duration-300 md:hidden ${isOpen ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0"
+            }`}
         >
           <div className="space-y-2 px-4 py-4">
             <Link
