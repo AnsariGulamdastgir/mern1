@@ -5,14 +5,3 @@ const API = axios.create({
 });
 
 export default API;
-
-
-
-
-// import axios from "axios";
-
-// const API = axios.create({
-//   baseURL: "https://backend-carscout1.onrender.com"
-// });
-
-// export default API;
