@@ -1,0 +1,11 @@
+services:
+  - type: static
+    name: mern1-car-scout-frontend
+    env: static
+    buildCommand: npm run build
+    publishPath: ./dist
+    routes:
+      - source: /assets/*
+        destination: /assets/*
+      - source: /*
+        destination: /index.html
