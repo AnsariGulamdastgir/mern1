@@ -1,0 +1,15 @@
+PORT=3800
+# FRONTEND_URL=http://localhost:5173
+# BACKEND_URL=http://localhost:3800
+FRONTEND_URL=https://mern1-car-scout-frontend-main.onrender.com
+BACKEND_URL=https://mern1-car-scout-backend-main.onrender.com
+# MONGO_URL=mongodb://127.0.0.1:27017/carScoutDB2
+MONGO_URL=mongodb://hikefoothills_db_user:hb32aDZjKLq5i6As@ac-3sb6eij-shard-00-00.uwo3ui3.mongodb.net:27017,ac-3sb6eij-shard-00-01.uwo3ui3.mongodb.net:27017,ac-3sb6eij-shard-00-02.uwo3ui3.mongodb.net:27017/carScoutDB2?ssl=true&replicaSet=atlas-1025qo-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0
+
+EMAIL_USER=hike.foot.hills@gmail.com
+EMAIL_PASSWORD=fxugysczypxlkuxm
+
+CLOUDINARY_CLOUD_NAME=dp5wyotqg
+CLOUDINARY_API_KEY=447228111119237
+CLOUDINARY_API_SECRET=wbJJs8-UU9OnsdnbzkcLHqLjEsg
+JWT_SECRET=supersecret_carscout_2026
