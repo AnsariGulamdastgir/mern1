@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getCleanImageUrl } from "../../utils/imageUtils";
 
 const CarCard = ({ car }) => {
-  const image = car.images?.[0] || "https://via.placeholder.com/400x260";
+  const image = getCleanImageUrl(car.images?.[0]);
 
   const formattedPrice = car.price
     ? `₹ ${Number(car.price).toLocaleString("en-IN")}`

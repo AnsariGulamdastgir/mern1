@@ -7,9 +7,15 @@ const userSocketMap = {};
 const initSocket = (server) => {
   const { Server } = require("socket.io");
 
+  const allowedOrigins = process.env.FRONTEND_URL 
+    ? process.env.FRONTEND_URL.split(",") 
+    : ["http://localhost:5173"];
+
+  console.log(`[Socket] Initializing with allowed origins:`, allowedOrigins);
+
   io = new Server(server, {
     cors: {
-      origin: process.env.FRONTEND_URL || "http://localhost:5173",
+      origin: allowedOrigins,
       methods: ["GET", "POST"],
     },
   });

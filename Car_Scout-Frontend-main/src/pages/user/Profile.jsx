@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import API from "../../api/Api";
 import { toast } from "react-toastify";
+import { getCleanImageUrl } from "../../utils/imageUtils";
 
 const Profile = () => {
   const savedUser = JSON.parse(localStorage.getItem("user"));
@@ -90,7 +91,7 @@ const Profile = () => {
             <div className="rounded-3xl border border-white/10 bg-[#0f172a] p-6 text-center">
               {user?.profilePic ? (
                 <img
-                  src={user.profilePic}
+                  src={getCleanImageUrl(user.profilePic)}
                   alt="Profile"
                   className="mx-auto h-32 w-32 rounded-full border border-white/10 object-cover"
                 />

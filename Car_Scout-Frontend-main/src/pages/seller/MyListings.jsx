@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api/Api";
 import { toast } from "react-toastify";
+import { getCleanImageUrl } from "../../utils/imageUtils";
 
 const MyListings = () => {
   const [cars, setCars] = useState([]);
@@ -99,7 +100,7 @@ const MyListings = () => {
               >
                 <div className="relative">
                   <img
-                    src={car.images?.[0]}
+                    src={getCleanImageUrl(car.images?.[0])}
                     alt={car.model}
                     className="h-52 w-full object-cover"
                   />
@@ -288,7 +289,7 @@ const MyListings = () => {
                     {editCar.images.map((img, index) => (
                       <img
                         key={index}
-                        src={img}
+                        src={getCleanImageUrl(img)}
                         alt="existing"
                         className="h-20 w-20 rounded-xl border border-white/10 object-cover"
                       />

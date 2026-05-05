@@ -10,6 +10,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import API from "../../api/Api";
 import Chatbot from "../Chatbot";
 import socket from "../../utils/socket";
+import { getCleanImageUrl } from "../../utils/imageUtils";
 
 export const UserNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -217,7 +218,7 @@ export const UserNavbar = () => {
               >
                 {user?.profilePic ? (
                   <img
-                    src={user.profilePic}
+                    src={getCleanImageUrl(user.profilePic)}
                     alt="profile"
                     className="h-10 w-10 rounded-full border border-white/10 object-cover"
                   />

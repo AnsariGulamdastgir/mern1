@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { Navigation, Thumbs } from "swiper/modules";
 import { toast } from "react-toastify";
+import { getCleanImageUrl } from "../../utils/imageUtils";
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -179,7 +180,7 @@ const CarDetails = () => {
               {car.images?.map((img, index) => (
                 <SwiperSlide key={index}>
                   <img
-                    src={img}
+                    src={getCleanImageUrl(img)}
                     alt="car"
                     className="h-96 w-full object-cover"
                   />
@@ -198,7 +199,7 @@ const CarDetails = () => {
               {car.images?.map((img, index) => (
                 <SwiperSlide key={index}>
                   <img
-                    src={img}
+                    src={getCleanImageUrl(img)}
                     alt="thumb"
                     className="h-24 w-full cursor-pointer rounded-xl border border-white/10 object-cover"
                   />
