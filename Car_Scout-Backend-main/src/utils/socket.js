@@ -4,12 +4,25 @@ let io;
 // userId → socketId map
 const userSocketMap = {};
 
+// Always-allowed origins — covers local dev + Render production
+// Even if FRONTEND_URL env var is missing on Render, these will work
+const BASE_ALLOWED_ORIGINS = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://mern1-car-scout-frontend-main.onrender.com",
+];
+
 const initSocket = (server) => {
   const { Server } = require("socket.io");
 
-  const allowedOrigins = process.env.FRONTEND_URL 
-    ? process.env.FRONTEND_URL.split(",") 
-    : ["http://localhost:5173"];
+  // Merge env-based origins with hardcoded fallbacks (deduplicated)
+  const envOrigins = process.env.FRONTEND_URL
+    ? process.env.FRONTEND_URL.split(",").map((o) => o.trim())
+    : [];
+
+  const allowedOrigins = [
+    ...new Set([...BASE_ALLOWED_ORIGINS, ...envOrigins]),
+  ];
 
   console.log(`[Socket] Initializing with allowed origins:`, allowedOrigins);
 
@@ -17,6 +30,7 @@ const initSocket = (server) => {
     cors: {
       origin: allowedOrigins,
       methods: ["GET", "POST"],
+      credentials: true,
     },
   });
 

@@ -1,31 +1,55 @@
 /**
- * Fixes image URLs that might have been saved with "localhost:3800" in the database.
- * Replaces localhost with the actual production API URL if we are in production.
+ * Resolves image URLs for both local development and production.
+ *
+ * WHY THIS IS NEEDED:
+ * Images uploaded via the app are stored in MongoDB with full URLs.
+ * Depending on when/where they were uploaded, they may contain:
+ *   - "https://mern1-car-scout-backend-main.onrender.com/uploads/..." (uploaded on Render)
+ *   - "http://localhost:3800/uploads/..."  (uploaded locally)
+ *   - "https://res.cloudinary.com/..."    (Cloudinary CDN)
+ *   - "/uploads/filename.jpg"             (relative path)
+ *
+ * RULES:
+ *   - Cloudinary / other CDN → return as-is
+ *   - Render onrender.com URL → return as-is (file lives on Render's disk)
+ *   - localhost:3800 URL in PRODUCTION → replace with production backend URL
+ *   - Relative path → prepend correct base URL
  */
+
+const PRODUCTION_BACKEND = "https://mern1-car-scout-backend-main.onrender.com";
+const LOCAL_BACKEND = "http://localhost:3800";
+
 export const getCleanImageUrl = (url) => {
   if (!url) return "https://via.placeholder.com/400x260";
-  
-  // If the URL is already a full external URL (like Cloudinary), return it as is
-  if (url.startsWith("http") && !url.includes("localhost:3800")) {
+
+  const apiUrl = import.meta.env.VITE_API_URL || LOCAL_BACKEND;
+  const isDev = apiUrl === LOCAL_BACKEND;
+
+  // 1. Cloudinary or external CDN → always return as-is
+  if (
+    url.startsWith("http") &&
+    !url.includes("localhost:3800") &&
+    !url.includes("onrender.com")
+  ) {
     return url;
   }
 
-  const productionBackendUrl = import.meta.env.VITE_API_URL;
-
-  // If the URL contains localhost:3800, replace it with the production URL
-  if (url.includes("localhost:3800")) {
-    if (productionBackendUrl) {
-      // Replace with or without protocol
-      return url.replace(/https?:\/\/localhost:3800/g, productionBackendUrl)
-                .replace(/localhost:3800/g, productionBackendUrl.replace(/^https?:\/\//, ""));
-    }
+  // 2. Render/onrender.com URL → return as-is in ALL environments
+  //    (the file physically lives on Render's server)
+  if (url.includes("onrender.com")) {
+    return url;
   }
 
-  // If it's a relative path (e.g. /uploads/...), prepend the base URL
+  // 3. localhost URL in PRODUCTION → replace with production backend URL
+  if (!isDev && url.includes("localhost:3800")) {
+    return url.replace(LOCAL_BACKEND, apiUrl);
+  }
+
+  // 4. Relative path (e.g. /uploads/xyz.jpg) → prepend correct base URL
   if (!url.startsWith("http")) {
-    const baseUrl = productionBackendUrl || "http://localhost:3800";
-    return `${baseUrl}${url.startsWith("/") ? "" : "/"}${url}`;
+    return `${apiUrl}${url.startsWith("/") ? "" : "/"}${url}`;
   }
 
+  // 5. localhost URL in local dev → serve from local backend
   return url;
 };

@@ -4,8 +4,30 @@ const app = express()
 const cors = require("cors")
 require("dotenv").config() //load env file... using process
 
+// Allowed frontend origins — always includes local dev + Render production
+const ALLOWED_ORIGINS = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://mern1-car-scout-frontend-main.onrender.com",
+  ...(process.env.FRONTEND_URL
+    ? process.env.FRONTEND_URL.split(",").map((o) => o.trim())
+    : []),
+];
+
 app.use(express.json())
-app.use(cors()) //allow all requests
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, Postman, curl, etc.)
+    if (!origin) return callback(null, true);
+    if (ALLOWED_ORIGINS.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error(`CORS blocked: ${origin}`), false);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+}))
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
     next();
