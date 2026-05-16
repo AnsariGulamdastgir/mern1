@@ -14,10 +14,10 @@ const Home = () => {
     "BMW",
     "Venue",
     "Safari",
-    "",
-    "Petrol",
     "Hyundai",
-  ];
+    "Toyota",
+    "Volkswagen",
+    ];
 
   const brands = [
     "Maruti",
