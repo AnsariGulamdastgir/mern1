@@ -14,7 +14,7 @@ const Home = () => {
     "BMW",
     "Venue",
     "Safari",
-    "Automatic",
+    "",
     "Petrol",
     "Hyundai",
   ];
