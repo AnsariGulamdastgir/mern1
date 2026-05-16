@@ -17,7 +17,14 @@ const Home = () => {
     "Hyundai",
     "Toyota",
     "Volkswagen",
-    ];
+    "kia",
+    "Mercedes",
+    "Bmw",
+    "Audi",
+    "tata",
+    "kia",
+    "swift",
+ ];
 
   const brands = [
     "Maruti",
