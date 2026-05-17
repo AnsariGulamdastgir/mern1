@@ -59,27 +59,26 @@ const SellerHome = () => {
       iconWrap: "bg-emerald-400/15 text-emerald-300",
       icon: "↑",
     },
-
     {
-      step: "03",
-      title: "Book Test Drive",
-      desc: "Interested buyers can schedule test drives smoothly, helping both sides move forward with confidence.",
+      step: "02",
+      title: "Manage Offers & Drives",
+      desc: "Receive buyer offers and manage test drive requests smoothly directly from your dashboard.",
       image:
         "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=900&q=80",
-      accent: "from-amber-400/20 to-amber-500/5",
-      badge: "bg-amber-400 text-slate-950",
-      iconWrap: "bg-amber-400/15 text-amber-300",
+      accent: "from-cyan-400/20 to-cyan-500/5",
+      badge: "bg-cyan-400 text-slate-950",
+      iconWrap: "bg-cyan-400/15 text-cyan-300",
       icon: "◷",
     },
     {
-      step: "04",
+      step: "03",
       title: "Close the Deal",
-      desc: "Receive offers, respond professionally, and finalize your sale through a smoother marketplace experience.",
+      desc: "Chat with serious buyers, finalize your sale, and complete the process through a cleaner experience.",
       image:
         "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=900&q=80",
-      accent: "from-rose-400/20 to-rose-500/5",
-      badge: "bg-rose-400 text-slate-950",
-      iconWrap: "bg-rose-400/15 text-rose-300",
+      accent: "from-amber-400/20 to-amber-500/5",
+      badge: "bg-amber-400 text-slate-950",
+      iconWrap: "bg-amber-400/15 text-amber-300",
       icon: "⇄",
     },
   ];
@@ -255,7 +254,7 @@ const SellerHome = () => {
               </p>
             </div>
 
-            <div className="relative mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <div className="relative mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {sellSteps.map((item, index) => (
                 <div key={item.title} className="relative">
                   <div className="group overflow-hidden rounded-[28px] border border-white/10 bg-[#0f172a] shadow-[0_12px_30px_rgba(0,0,0,0.18)] transition duration-300 hover:-translate-y-1 hover:border-white/20">
