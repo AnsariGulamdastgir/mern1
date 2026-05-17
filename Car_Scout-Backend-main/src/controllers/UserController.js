@@ -27,11 +27,15 @@ const registerUser = async (req, res) => {
         existingUser.otp = otp;
         await existingUser.save();
 
-        await mailSend(
-          normalizedEmail,
-          "Verify your CarScout account",
-          getOTPEmailTemplate({ firstName, otp })
-        );
+        try {
+          await mailSend(
+            normalizedEmail,
+            "Verify your CarScout account",
+            getOTPEmailTemplate({ firstName, otp })
+          );
+        } catch (mailErr) {
+          console.log("Mail Error during OTP resend:", mailErr.message);
+        }
 
         return res.status(200).json({
           success: true,
