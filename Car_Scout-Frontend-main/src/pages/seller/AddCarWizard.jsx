@@ -14,6 +14,8 @@ import kiaLogo from "../../assets/brands/kia.png";
 import bmwLogo from "../../assets/brands/bmw.png";
 import audiLogo from "../../assets/brands/audi.png";
 import mercedesLogo from "../../assets/brands/mercedes.png";
+import volkswagenLogo from "../../assets/brands/volkswagen.svg";
+import fordLogo from "../../assets/brands/ford.svg";
 
 const brandLogos = {
   Hyundai: hyundaiLogo,
@@ -26,6 +28,8 @@ const brandLogos = {
   BMW: bmwLogo,
   Audi: audiLogo,
   Mercedes: mercedesLogo,
+  Volkswagen: volkswagenLogo,
+  Ford: fordLogo,
 };
 
 const yearOptions = [
