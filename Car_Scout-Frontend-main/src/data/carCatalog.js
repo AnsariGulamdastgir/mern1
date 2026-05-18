@@ -39,4 +39,10 @@ export const carCatalog = {
   Audi: [
     "A3", "A4", "A6", "A8 L", "Q2", "Q3", "Q5", "Q7", "Q8", "e-tron", "RS5", "RS e-tron GT", "TT", "R8"
   ],
+  Volkswagen: [
+    "Polo", "Vento", "Taigun", "Virtus", "Tiguan", "Passat", "Jetta", "Ameo"
+  ],
+  Ford: [
+    "EcoSport", "Endeavour", "Figo", "Aspire", "Freestyle", "Fiesta", "Mustang"
+  ]
 };
